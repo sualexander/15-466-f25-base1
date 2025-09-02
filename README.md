@@ -1,8 +1,8 @@
-# (TODO: your game's title)
+# Time
 
-Author: (TODO: your name)
+Author: Alexander Su
 
-Design: (TODO: In two sentences or fewer, describe what is new and interesting about your game.)
+Design: A timey puzzler...
 
 Screen Shot:
 
@@ -10,13 +10,11 @@ Screen Shot:
 
 How Your Asset Pipeline Works:
 
-(TODO: describe the steps in your asset pipeline, from source files to tiles/backgrounds/whatever you upload to the PPU466.)
-
-(TODO: make sure the source files you drew are included. You can [link](your/file.png) to them to be a bit fancier.)
+Sprites are differentiated from backgrounds for animation and multi-tiled sprite purposes. Sprites are sliced automatically and parsed into runtime format stored in global scope to be loaded into game objects when needed. There are also tilemaps that are just read line by line and reference the parsed tiles.
 
 How To Play:
 
-(TODO: describe the controls and (if needed) goals/strategy.)
+General side scroller movement.
 
 This game was built with [NEST](NEST.md).
 
