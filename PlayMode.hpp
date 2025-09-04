@@ -9,16 +9,21 @@
 
 struct Sprite {
 	size_t frame = 0;
+	size_t actualFrames = 0;
 	std::vector<size_t> tileIndices;
-	std::vector<size_t> paletteIndices; 
+	std::vector<size_t> paletteIndices;
+	glm::i8vec2 offset;
 };
 
 struct Entity {
 	uint8_t flags;
-	uint8_t x, y;
+	uint16_t x, y;
 	std::vector<Sprite> sprites;
+	uint8_t animSpeed = 16;
 	
-	void loadSprites(const std::string& assetName);
+	Entity(const std::string& assetName = "test");
+
+	void LoadSprites(const std::string& assetName);
 };
 
 struct Player : Entity {
@@ -30,6 +35,11 @@ struct Background {
 	std::vector<uint16_t> tiles;
 };
 
+struct Camera {
+	int32_t x = 0;
+	uint8_t leftThreshold = 85, rightThreshold = 171;
+};
+
 struct PlayMode : Mode {
 	PlayMode();
 	virtual ~PlayMode();
@@ -37,8 +47,6 @@ struct PlayMode : Mode {
 	virtual bool handle_event(SDL_Event const &, glm::uvec2 const &window_size) override;
 	virtual void update(float elapsed) override;
 	virtual void draw(glm::uvec2 const &drawable_size) override;
-
-	void LoadAssets();
 
 	void StartLevel(const std::string& levelname);
 
@@ -55,6 +63,7 @@ struct PlayMode : Mode {
 
 	Player player;
 	Background background;
+	Camera camera;
 
 	//----- drawing handled by PPU466 -----
 
